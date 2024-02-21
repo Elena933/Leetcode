@@ -1,17 +1,26 @@
-var createHelloWorld = function() {
-    // this function shows the concept of
-    // hight-order function and use rest parameter
-    return function(...args) {
-        if (args.length > 0) {
-            return  args.join(' ');
-        } else {
-            return 'Hello World';
-        }
-    };
+// var createHelloWorld = function() {
+    
+//     return function(...args) {
+//         return 'Hello World'
+//     }
+// };
+
+// /**
+//  * const f = createHelloWorld();
+//  * f(); // "Hello World"
+//  */
+
+
+const createHelloWorld = () => {
+    return (...args) => {
+        return args.length > 0 ? args.join(' ') : 'Hello World';
+    }; // Check for command-line arguments or use default value
 };
 
-const f = createHelloWorld();
+const runHelloWorld = () => {
+    const f = createHelloWorld();
+    const args = process.argv.slice(2); 
+    console.log(f(...args));
+};
 
-
-console.log(f(...process.argv.slice(2))); // this line
-// takes the command-line args and pass to f
+runHelloWorld();
